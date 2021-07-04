@@ -1,49 +1,40 @@
 #include <stdio.h>
 
-#define IN 1
-#define OUT 0
+void foldLines(int lineLength, int strLength);
+
+#define STRLENGTH 100
+#define LINELENGTH 30
 
 int main(){
-    int c, word, lc, state, maxWordLength;
-    int wordArray[10];
-    state = IN;
-    lc = 0;
-    maxWordLength = 0;
-    word = 0;
+    foldLines(LINELENGTH, STRLENGTH);
+}
 
-    for(int i = 0; i < 10; i++)
-        wordArray[i] = 0;
+void foldLines(int lineLength, int strLength){
+    int c, i = 0;
+    char str[STRLENGTH];
+    while((c = getchar()) != '\n'){
+        str[i++] = c;
+    }
+    str[i] = '\0';
 
-    while ((c = getchar()) != EOF) {
-        if (c == '\n' || c ==  ' ' || c == '\t') {
-            if (state == IN){
-                wordArray[word] = lc;
-                if(lc > maxWordLength)
-                    maxWordLength = lc;
-                word++;
-                lc = 0;
-                state = OUT;
+    int k, letterCount = 0;
+    char temp;
+
+    while(str[k] != '\0'){
+        if (str[k] == '\n'){
+            letterCount = 0;
+        }
+        else if(letterCount >= lineLength){
+            for(int j = strLength - 1; j > k; j--){
+                str[j] = str[j-1];
             }
-        } else {
-            state = IN;
-            lc++;
+            str[k] = '\n';
+            letterCount = 0;
         }
+        else
+            letterCount++;
+        k++;
     }
 
-    printf("\n");
-
-    for(int i = 0; i < maxWordLength; i++){
-        word = 0;
-        while (wordArray[word] != 0){
-            if (wordArray[word] > i)
-                printf("|");
-            else
-                printf(" ");
-
-            printf(" ");
-            word++;
-        }
-        printf("\n");
-    }
-
+    printf("%s\n",str);
 }
