@@ -2,7 +2,9 @@
 #include "usefulFunctions.c"
 
 int main(){
-    int x = 1000;
-    x = x >> 3;
-    printf("%d\n", x);
+    int n = 0b00000000;
+    printf("%d\n", n);
+
+    n = n | 0x0f;
+    printf("%d\n", n);
 }
