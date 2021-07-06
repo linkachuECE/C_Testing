@@ -1,10 +1,7 @@
 #include "headers.h"
-#include "usefulFunctions.c"
+#include "testFunctions.c"
 
 int main(){
-    int n = 0b00000000;
-    printf("%d\n", n);
-
-    n = n | 0x0f;
-    printf("%d\n", n);
+    int result = invert(0b00001010,0,4);
+    printf("%d", result);
 }

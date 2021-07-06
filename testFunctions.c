@@ -62,3 +62,31 @@ void strSqueeze(char s1[], char s2[]){
         }
     }
 }
+
+int setbits(int x, int p, int n, int y){
+    /*int xMask = ~(~0 << n) << p;
+    int clearedX = x | (xMask);
+    int yMask = ~(~0 << n);
+    int yInvMasked = ~y & yMask;
+    int yInvShifted = yInvMasked << p;
+    int yShifted = ~yInvShifted;
+    int result = yShifted & clearedX;*/
+
+    int result = (~((~y & (~(~0 << n))) << p)) & (x | (~(~0 << n) << p));
+
+    return result;
+}
+
+
+// DOESN'T WORK RIGHT NOW, PLEASE FIX
+int invert(int x, int p, int n){
+    int xshift = x >> p;
+    int xMask = ~(~0 << n);
+    int xImportantBitsInverted = ~((xshift & xMask) << p);
+    int origMask = ~(xMask << p);
+    int clearedX = x & origMask;
+    int result = clearedX & xImportantBitsInverted;
+
+    return result;
+}
+
