@@ -90,3 +90,89 @@ int invert(int x, int p, int n){
     return result;
 }
 
+int binsearch(int x, int v[], int n){
+    int low, high, mid;
+    
+    low = 0;
+    high = n - 1;
+    while (low <= high){
+        mid = (low+high)/2;
+        if (x < v[mid])
+            high = mid - 1;
+        else if (x > v[mid])
+            low = mid + 1;
+        else
+            return mid;
+    }
+    return -1;
+}
+
+int linsearch(int x, int v[], int n){
+    for(int i = 0; i < n; i++){
+        if (v[i] == x)
+            return i;
+    }
+    return -1;
+}
+
+void escape(char s[], char t[]){
+    int i = 0;
+    int j = 0;
+
+    while(s[i] != '\0'){
+        switch(s[i]){
+            case '\t':
+                t[j++] = '\\';
+                t[j] = 't';
+                break;
+            case '\n':
+                t[j++] = '\\';
+                t[j] = 'n';
+                break;
+            default:
+                t[j] = s[i];
+        }
+        ++i;
+        ++j;
+    }
+
+    t[j] = '\0';
+}
+
+void realChars(char s[], char t[]){
+    int i = 0;
+    int j = 0;
+
+    while(s[i] != '\0'){
+        if(s[i] == '\\'){
+            switch(s[i+1]){
+                case 't':
+                    t[j] = '\t';
+                    ++i;
+                    break;
+                case 'n':
+                    t[j] = '\n';
+                    ++i;
+                    break;
+            }
+        } else
+            t[j] = s[i];
+
+        ++i;
+        ++j;
+    }
+
+    t[j] = '\0';
+}
+
+
+// CURRENTLY WORKING ON THIS ONE
+void expand(char s1[], char s2[]){
+    int i = 0;
+    int j = 0;
+
+    while (s1[i] != '\0'){
+
+    }
+
+}
