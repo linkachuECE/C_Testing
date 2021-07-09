@@ -1,5 +1,47 @@
 #include "headers.h"
 
+void reverseString(char fromS[], char toS[]);
+int strrindex(char s[], char t[]);
+int stringLength(char s[]);
+
+int strrindex(char s[], char t[]){
+    char treverse[stringLength(t) + 1];
+    reverseString(t, treverse);
+
+    int i;
+
+    for(i = stringLength(t); i >= 0; i--){
+        if (s[i] = treverse[0]){
+            for(int j = 0; i - j >= -1 ; j++){
+                if (treverse[j] == '\0')
+                    return i - j + 1;
+                if (treverse[j] != s[i - j])
+                    break;
+            }
+        } 
+    }
+
+    return -1;
+}
+
+void reverseString(char fromS[], char toS[]){
+    int i;
+    int j = stringLength(fromS);
+    toS[j--] = '\0';
+
+    for(i = 0; fromS[i] != '\0'; i++, j--){
+        toS[j] = fromS[i];
+    }
+}
+
+int stringLength(char s[]){
+    int i;
+    for(i = 0; s[i] != '\0'; i++)
+        ;
+    
+    return i;
+}
+
 int stoi(char s[]){
     int i, n;
     n = 0;
