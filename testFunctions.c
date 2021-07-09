@@ -164,15 +164,3 @@ void realChars(char s[], char t[]){
 
     t[j] = '\0';
 }
-
-
-// CURRENTLY WORKING ON THIS ONE
-void expand(char s1[], char s2[]){
-    int i = 0;
-    int j = 0;
-
-    while (s1[i] != '\0'){
-
-    }
-
-}
