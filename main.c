@@ -25,7 +25,7 @@ int main(){
     int index = strrindex(s1, s2);
 
     if (index != -1)
-        printf("The rightmost position of that string was found at position %d", index);
+        printf("The rightmost position of that string was found at position %d\n", index);
     else
-        printf("That string wasn't found, you dumb fuck");
+        printf("That string wasn't found, you dumb fuck\n");
 }

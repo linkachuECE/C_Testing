@@ -4,14 +4,15 @@ void reverseString(char fromS[], char toS[]);
 int strrindex(char s[], char t[]);
 int stringLength(char s[]);
 
+// Get the index of the rightmost position of a string, contained within another string
 int strrindex(char s[], char t[]){
     char treverse[stringLength(t) + 1];
     reverseString(t, treverse);
 
     int i;
 
-    for(i = stringLength(t); i >= 0; i--){
-        if (s[i] = treverse[0]){
+    for(i = stringLength(s); i >= 0; i--){
+        if (s[i] == treverse[0]){
             for(int j = 0; i - j >= -1 ; j++){
                 if (treverse[j] == '\0')
                     return i - j + 1;
@@ -24,6 +25,7 @@ int strrindex(char s[], char t[]){
     return -1;
 }
 
+// Take a string and put the reverse in the second string
 void reverseString(char fromS[], char toS[]){
     int i;
     int j = stringLength(fromS);
@@ -34,6 +36,7 @@ void reverseString(char fromS[], char toS[]){
     }
 }
 
+// Returns the total length of a string
 int stringLength(char s[]){
     int i;
     for(i = 0; s[i] != '\0'; i++)
