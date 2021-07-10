@@ -122,7 +122,6 @@ int setbits(int x, int p, int n, int y){
     return result;
 }
 
-
 // DOESN'T WORK RIGHT NOW, PLEASE FIX
 int invert(int x, int p, int n){
     int xshift = x >> p;
@@ -209,3 +208,43 @@ void realChars(char s[], char t[]){
 
     t[j] = '\0';
 }
+
+double atof(char s[]){
+    double val, power, expNum;
+    double expPower = 1;
+    int i, j, sign, expSign;
+    char expNumS[100];
+
+    for (i = 0; isspace(s[i]); i++)
+        ;
+    sign = (s[i] == '-') ? -1 : 1;
+    if (s[i] == '+' || s[i] == '-')
+        i++;
+    for (val = 0.0; isdigit(s[i]); i++)
+        val = 10.0 * val + (s[i] - '0');
+    if (s[i] == '.')
+        i++;
+    for (power = 1.0; isdigit(s[i]); i++){
+        val = 10.0 * val + (s[i] - '0');
+        power *= 10.0;
+    }
+
+    if (s[i] == 'e' || s[i] == 'E'){
+        i++;
+        expSign = (s[i] == '-') ? -1 : 1;
+        if (s[i] == '+' || s[i] == '-')
+            i++;
+        j = 0;
+        while(isdigit(s[i]) || s[i] == '.'){
+            expNumS[j++] = s[i++];
+        }
+        expNumS[j] = '\0';
+        expNum = atof(expNumS);
+        expPower = pow(10, (expSign*expNum));
+    }
+
+    double result = (sign * val/power) * expPower;
+
+    return result;
+}
+
