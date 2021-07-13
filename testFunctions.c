@@ -37,7 +37,7 @@ void reverseString(char fromS[], char toS[]){
 }
 
 // Returns the total length of a string
-int stringLength(char s[]){
+int stringLength(char* s){
     int i;
     for(i = 0; s[i] != '\0'; i++)
         ;
