@@ -5,32 +5,10 @@
 int switchStrings(char* s1, char* s2);
 
 int main(){
-    char s1[] = "Howdy howdy!!!";
-    char s2[] = "Howdy yourself";
+    int x[100];
 
-    printf("%s\n", s1);
-    printf("%s\n\n", s2);
+    for (int n = 0; n < 100 && getint(&x[n]) != EOF; n++)
+        printf("%d\n", x[n]);
 
-    switchStrings(s1, s2);
-
-    printf("%s\n", s1);
-    printf("%s\n", s2);
-}
-
-int switchStrings(char* s1, char* s2){
-  
-    if (stringLength(s1) != stringLength(s2))
-        return 0;
-    
-    int length = stringLength(s1);
-
-    char temp[length];
-
-    for(int i = 0; i < length; i++){
-        temp[i] = s1[i];
-        s1[i] = s2[i];
-        s2[i] = temp[i];
-    }
-
-    return 1;
+    return 0;
 }

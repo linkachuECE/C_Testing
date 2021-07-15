@@ -3,6 +3,8 @@
 void reverseString(char fromS[], char toS[]);
 int strrindex(char s[], char t[]);
 int stringLength(char s[]);
+int getch(void);
+void ungetch(int c);
 
 // Get the index of the rightmost position of a string, contained within another string
 int strrindex(char s[], char t[]){
@@ -248,3 +250,58 @@ double atof(char s[]){
     return result;
 }
 
+int getint(int *pn){
+    int c, sign;
+
+    while (isspace(c = getch()))
+        ;
+    
+    if(!isdigit(c) && c != '+' && c != '-'){
+        ungetch(c); // It's not a number
+        return 0;
+    }
+
+    sign = (c =='-') ? -1 : 1;
+
+    if (c == '-' && !isdigit(c = getch())){
+        ungetch(c);
+        *pn = EOF;
+        return 0;
+    }
+    ungetch(c);
+
+    if ((c = getch()) =='+' || c == '-')
+        c = getch();
+    for (*pn = 0;  isdigit(c); c = getch())
+        *pn = 10 * *pn + (c - '0');
+    *pn *= sign;
+
+    if (c != EOF)
+        ungetch(c);
+    return c;
+}
+
+int getFloat(float *p){
+    int c, sign;
+
+    while (isspace(c = getch()))
+        ;
+
+    if(!isdigit(c) &&)
+}
+
+#define BUFSIZE 100
+
+char buf[BUFSIZE];
+int bufp = 0;
+
+int getch(void){
+    return (bufp > 0) ? buf[--bufp] : getchar();
+}
+
+void ungetch(int c){
+    if (bufp >= BUFSIZE)
+        printf("ungetch: too many characters\n");
+    else
+        buf[bufp++] = c;
+}
