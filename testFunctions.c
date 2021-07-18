@@ -281,13 +281,48 @@ int getint(int *pn){
     return c;
 }
 
-int getFloat(float *p){
-    int c, sign;
+// Concatenates, at most, the first n characters of f to t
+void stringcat(char* f, char* t, int n){
+    t = t + stringLength(t);
+    int i = 0;
 
-    while (isspace(c = getch()))
-        ;
+    while((*t++ = *f++) && i < n - 1)
+        i++;
+    
+    *t = '\0';
+}
 
-    if(!isdigit(c) &&)
+// Copies, at most, the first n characters of f to n
+void stringcopy(char* f, char* t, int n){
+    int i = 0;
+
+    while((*t++ = *f++) && i < n - 1)
+        i++;
+    
+    *t = '\0';
+}
+
+int stringend(char* s, char* t){
+    int isMatch = 0;
+    char* p = t;
+
+    while(*s){
+        if (!(*p == *s)){
+            p = t;
+            isMatch = 0;
+        }
+
+        if(*s == *p){
+            isMatch = 1;
+            p++;
+        }
+
+        s++;
+    }
+    if(*p)
+        isMatch = 0;
+    
+    return isMatch;
 }
 
 #define BUFSIZE 100

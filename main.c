@@ -2,13 +2,16 @@
 #include "testFunctions.c"
 #include "expand.c"
 
-int switchStrings(char* s1, char* s2);
+int main(int argc, char* argv[]){
+    if(argc == 1){
+        printf("No command line arguments passed.\n");
+        return 0;
+    }
 
-int main(){
-    int x[100];
-
-    for (int n = 0; n < 100 && getint(&x[n]) != EOF; n++)
-        printf("%d\n", x[n]);
+    printf("You passed the following arguments:\n");
+    for(int i = 1; i < argc; i++){
+        printf("%s\n",argv[i]);
+    }
 
     return 0;
 }
