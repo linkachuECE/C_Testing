@@ -9,15 +9,11 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/bin/${fileBasenameNoExtension}",
-            "args": [
-                "5",
-                "2",
-                "%"
-            ],
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
-            "externalConsole": false,
+            "console": false,
             "MIMode": "gdb",
             "setupCommands": [
                 {
