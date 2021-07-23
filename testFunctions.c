@@ -340,3 +340,16 @@ void ungetch(int c){
     else
         buf[bufp++] = c;
 }
+
+#define UPPERCASE 0
+#define LOWERCASE 1
+
+// Takes a string and converts to UPPERCASE or LOWERCASE
+void convertCase(char *s, int lCase){
+    for (int i = 0; i < stringLength(s); i++){
+        if(lCase == UPPERCASE && s[i] >= 'a' && s[i] <= 'z')
+            s[i] = 'A' + s[i] - 'a';
+        else if(lCase == LOWERCASE && s[i] >= 'A' && s[i] <= 'Z')
+            s[i] = 'a' + s[i] - 'A';
+    }
+}
