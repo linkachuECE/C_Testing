@@ -211,45 +211,6 @@ void realChars(char s[], char t[]){
     t[j] = '\0';
 }
 
-double atof(char s[]){
-    double val, power, expNum;
-    double expPower = 1;
-    int i, j, sign, expSign;
-    char expNumS[100];
-
-    for (i = 0; isspace(s[i]); i++)
-        ;
-    sign = (s[i] == '-') ? -1 : 1;
-    if (s[i] == '+' || s[i] == '-')
-        i++;
-    for (val = 0.0; isdigit(s[i]); i++)
-        val = 10.0 * val + (s[i] - '0');
-    if (s[i] == '.')
-        i++;
-    for (power = 1.0; isdigit(s[i]); i++){
-        val = 10.0 * val + (s[i] - '0');
-        power *= 10.0;
-    }
-
-    if (s[i] == 'e' || s[i] == 'E'){
-        i++;
-        expSign = (s[i] == '-') ? -1 : 1;
-        if (s[i] == '+' || s[i] == '-')
-            i++;
-        j = 0;
-        while(isdigit(s[i]) || s[i] == '.'){
-            expNumS[j++] = s[i++];
-        }
-        expNumS[j] = '\0';
-        expNum = atof(expNumS);
-        expPower = pow(10, (expSign*expNum));
-    }
-
-    double result = (sign * val/power) * expPower;
-
-    return result;
-}
-
 int getint(int *pn){
     int c, sign;
 
@@ -352,4 +313,37 @@ void convertCase(char *s, int lCase){
         else if(lCase == LOWERCASE && s[i] >= 'A' && s[i] <= 'Z')
             s[i] = 'a' + s[i] - 'A';
     }
+}
+
+void minprintf(char *fmt, ...){
+    va_list ap;
+    char *p, *sval;
+    int ival; 
+    double dval;
+
+    va_start(ap, fmt);
+    for (p = fmt; *p; p++){
+        if (*p != '%'){
+            putchar(*p);
+            continue;
+        }
+        switch(*++p){
+            case 'd':
+                ival = va_arg(ap, int);
+                printf("%d", ival);
+                break;
+            case 'f':
+                dval = va_arg(ap, double);
+                printf("%f", dval);
+                break;
+            case 's':
+                for (sval = va_arg(ap, char *); *sval; sval++)
+                    putchar(*sval);
+                break;
+            default:
+                putchar(*p);
+                break;
+        }
+    }
+    va_end(ap);
 }
