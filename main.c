@@ -1,15 +1,31 @@
 #include "headers.h"
 #include "logicGates.h"
+#include <stdbool.h>
 
-int main(int argc, char *argv[])
-{
-    int a = 0, b = 0;
-    if (argc == 3)
-    {
-        a = argv[1][0] - '0';
-        b = argv[2][0] - '0';
+typedef struct{
+    bool (*gateFunc)(bool x, bool y);
+    char *gateName;
+} gate;
+
+gate gates[6] = {
+    {and, "AND"},
+    {nand, "NAND"},
+    {or, "OR"},
+    {nor, "NOR"},
+    {xor, "XOR"},
+    {xnor, "XNOR"},
+};
+
+void printMenu(){
+    printf("Welcome to the Simulator!\n");
+    printf("Choose an option:\n\n");
+
+    for (int i = 0; i < 6; i++){
+        printf("%d. %s\n", i + 1, gates[i].gateName);
     }
+}
 
-    int output = or (and(a, b), and(not(a), not(b)));
-    printf("%s\n", output == 1 ? "true" : "false");
+int main(int argc, char *argv[]){
+    printMenu();
+    printf("%d\n", gates[0].gateFunc(1,1));
 }
