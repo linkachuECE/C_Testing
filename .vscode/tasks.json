@@ -7,7 +7,7 @@
 			"command": "/usr/bin/gcc",
 			"args": [
 				"-g",
-				"${file}",
+				"*.c",
 				"-o",
 				"${fileDirname}/bin/${fileBasenameNoExtension}",
 				"-lm"
@@ -17,7 +17,7 @@
 			},
 			"problemMatcher": [
 				"$gcc"
-			], 
+			],
 			"group": {
 				"isDefault": true,
 				"kind": "build"
